@@ -4,6 +4,7 @@
 
 using namespace std;
 void displayCars(cCar, cCar, cCar);
+void ordinaryfunction(cCar&);
 
 int main()
 {
@@ -104,10 +105,11 @@ int main()
 			cout << "Selection out of bounds" << endl;
 		}
 	}
-	car[0] = new cCar();
-	car[0]->getCarData();
-	cCar carCopy(*car[0]);
-	carCopy.showCarData();
+	cCar car1;
+	car1.getCarData();
+	ordinaryfunction(car1);
+	cout << "car1 data:"<< endl;
+	car1.showCarData();
 
 	system("pause");
 }
@@ -116,4 +118,16 @@ void displayCars(cCar one, cCar two, cCar three) {
 	one.showCarData();
 	two.showCarData();
 	three.showCarData();
+}
+
+void ordinaryfunction(cCar& cpy) {
+	cout << "Inside ordinary function" << endl;
+	cCar localCar(cpy);
+	cout << "Displaying local car data before:" << endl;
+	localCar.showCarData();
+	localCar.mutateAllData();
+	cout << "Displaying local car data after:" << endl;
+	localCar.showCarData();
+	cout << "Displaying copy car data before:" << endl;
+	cpy.showCarData();
 }

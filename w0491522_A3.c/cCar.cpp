@@ -18,13 +18,24 @@ cCar::~cCar()
 
 cCar::cCar(cCar& copy)
 {
-	cout << "cCar Constructor called" << endl;
+	_licensePlate = new char[7];
+	_make = new char[20];
+	_colour = new char[20];
+
+	cout << "cCar Copy Constructor called" << endl;
 
 	_recordID = copy._recordID;
-	_licensePlate = copy._licensePlate;
-	_make = copy._make;
-	_colour = copy._colour;
-	_owner = copy._owner;
+
+	strncpy_s(_licensePlate, 7, copy._licensePlate ? copy._licensePlate : "", 6);
+	_licensePlate[6] = '\0';
+
+	strncpy_s(_make, 7, copy._make ? copy._make : "", 6);
+	_make[19] = '\0';
+
+	strncpy_s(_colour, 7, copy._colour ? copy._colour : "", 6);
+	_colour[19] = '\0';
+
+	_owner.ownercopy(_owner, copy._owner);
 }
 
 void cCar::getCarData()
@@ -112,7 +123,7 @@ void cCar::mutateSpecificData()
 		cin.clear();
 	}
 	else if (i == 5) {
-		_owner.getEmployeeData();
+		_owner.mutateEmployeeData();
 	}
 	else {
 		cout << "Selection out of bounds";
@@ -121,11 +132,24 @@ void cCar::mutateSpecificData()
 
 void cCar::mutateAllData()
 {
-	cout << endl;
-	cout << "New Car Record ID: " << _recordID << endl;
-	cout << "New Car License Plate: " << _licensePlate << endl;
-	cout << "New Car Make: " << _make << endl;
-	cout << "New Car Colour: " << _colour << endl;
-	_owner.showEmployeeData();
+	cout << "Enter new car record ID: ";
+	cin >> _recordID;
+	cin.ignore(INT_MAX, '\n');
+	cin.clear();
+
+	cout << "Enter new car license plate: ";
+	cin.getline(_licensePlate, 7);
+	cin.clear();
+
+	cout << "Enter new car make: ";
+	cin.getline(_make, 20);
+	cin.clear();
+
+	cout << "Enter new car colour: ";
+	cin.getline(_colour, 20);
+	cin.clear();
+
+	_owner.getEmployeeData();
 }
+
 
