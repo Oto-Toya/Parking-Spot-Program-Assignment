@@ -97,16 +97,11 @@ int main()
 			int carRec;
 			cout << "Which car do you want to display (Record Number)?" << endl;
 			cin >> carRec;
-			if (!car[0]->showSpeficData(carRec))
-			{	
-				if (!car[1]->showSpeficData(carRec)){
-					if (!car[2]->showSpeficData(carRec))
-						cout << "Out of bounds";
-					else{}
-				}
-				else{}
+			for (int i = 0; i < numCars; i++) {
+				if (car[i]->showSpeficData(carRec));
+				else
+					cout<<"out of bounds" << endl;
 			}
-			else{}
 
 		}
 
@@ -125,7 +120,7 @@ int main()
 	cCar car1;
 	car1.getCarData();
 	ordinaryfunction(car1);
-	cout << "car1 data:"<< endl;
+	cout << "car1 data:" << endl;
 	car1.showCarData();
 
 	system("pause");
