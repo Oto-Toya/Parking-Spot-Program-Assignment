@@ -78,7 +78,6 @@ void cCar::showCarData()
 
 bool cCar::showSpeficData(int carRec)
 {
-	cin.ignore(INT_MAX, '\n');
 	if (carRec == _recordID )
 		showCarData();
 	else {
