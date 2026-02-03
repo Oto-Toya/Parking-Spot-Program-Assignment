@@ -10,8 +10,8 @@ int main()
 {
 	cCar* car[3] = { nullptr, nullptr, nullptr };
 	int numCars = 0;
-	for (int i = 0; i != 4;) {
-		cout << "Car Management System\n1. Add Car Data\n2. Display Car Data\n3. Modify Car Data\n4. Exit Program" << endl;
+	for (int i = 0; i != 5;) {
+		cout << "Car Management System\n1. Add Car Data\n2. Display Car Data\n3. Modify Car Data\n4. Display Specfic Car Data\n5. Exit Program" << endl;
 		i = 0;
 		cin >> i;
 		cin.ignore(INT_MAX, '\n');
@@ -64,13 +64,13 @@ int main()
 			}
 
 		}
-		if (i == 3) {
+		else if (i == 3) {
 			if (numCars != 0) {
 				int carnum;
 				cout << "Which car do you want to modify (1-3)?" << endl;
 				cin >> carnum;
 				cin.ignore(INT_MAX, '\n');
-				if (carnum < 1 || carnum >= numCars) {
+				if (carnum > 1 || carnum <= numCars) {
 					cout << "What do you want to modify?\n1. All Data\n2. Specific Data" << endl;
 					int modifyChoice;
 					cin >> modifyChoice;
@@ -94,6 +94,23 @@ int main()
 			}
 		}
 		else if (i == 4) {
+			int carRec;
+			cout << "Which car do you want to display (Record Number)?" << endl;
+			cin >> carRec;
+			if (!car[0]->showSpeficData(carRec))
+			{	
+				if (!car[1]->showSpeficData(carRec)){
+					if (!car[2]->showSpeficData(carRec))
+						cout << "Out of bounds";
+					else{}
+				}
+				else{}
+			}
+			else{}
+
+		}
+
+		else if (i == 5) {
 			for (int k = 0; k < 3; k++) {
 				if (car[k] != nullptr) {
 					delete car[k];

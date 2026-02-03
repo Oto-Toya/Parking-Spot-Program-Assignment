@@ -40,6 +40,11 @@ cCar::cCar(cCar& copy)
 
 void cCar::getCarData()
 {
+	if (!_cost)
+	{
+	cout << "Enter parking cost: ";
+	cin >> _cost;
+	}
 	cout << "Enter car record ID: ";
 	cin >> _recordID;
 	cin.ignore(INT_MAX, '\n');
@@ -63,6 +68,7 @@ void cCar::getCarData()
 void cCar::showCarData()
 {
 	cout << endl;
+	cout << "Parking Cost: "<< _cost << endl;	
 	cout << "Car Record ID: " << _recordID << endl;
 	cout << "Car License Plate: " << _licensePlate << endl;
 	cout << "Car Make: " << _make << endl;
@@ -70,36 +76,20 @@ void cCar::showCarData()
 	_owner.showEmployeeData();
 }
 
-void cCar::showSpeficData()
+bool cCar::showSpeficData(int carRec)
 {
-	int i;
-	cout << "Display Options\n1. Record ID\n2. License Plate\n3. Make\n4. Colour\n5. Owner Details" << endl;
-	cin >> i;
 	cin.ignore(INT_MAX, '\n');
-	if (i == 1) {
-		cout << "Car Record ID: " << _recordID << endl;
-	}
-	else if (i == 2) {
-		cout << "Car License Plate: " << _licensePlate << endl;
-	}
-	else if (i == 3) {
-		cout << "Car Make: " << _make << endl;
-	}
-	else if (i == 4) {
-		cout << "Car Colour: " << _colour << endl;
-	}
-	else if (i == 5) {
-		_owner.showEmployeeData();
-	}
+	if (carRec == _recordID )
+		showCarData();
 	else {
-		cout << "Selection out of bounds";
+		return 0;
 	}
 }
 
 void cCar::mutateSpecificData()
 {
 	int i;
-	cout << "Mutate Options\n1.Record ID\n2.License Plate\n3.Make\n4.Colour\n5.Owner Details" << endl;
+	cout << "Mutate Options\n1.Record ID\n2.License Plate\n3.Make\n4.Colour\n5.Owner Details\n6.Parking Cost" << endl;
 	cin >> i;
 	cin.ignore(INT_MAX, '\n');
 	if (i == 1) {
@@ -124,6 +114,10 @@ void cCar::mutateSpecificData()
 	}
 	else if (i == 5) {
 		_owner.mutateEmployeeData();
+	}
+	else if (i == 6) {
+		cout << "Enter new parking cost: ";
+		cin >> _cost;
 	}
 	else {
 		cout << "Selection out of bounds";

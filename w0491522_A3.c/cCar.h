@@ -14,7 +14,7 @@ public:
 	cCar(cCar&);
 	void getCarData();
 	void showCarData();
-	void showSpeficData();
+	bool showSpeficData(int);
 	void mutateSpecificData();
 	void mutateAllData();
 private:
@@ -23,6 +23,6 @@ private:
 	char* _licensePlate;
 	char* _make;
 	char* _colour;
-	static float _cost;
+	inline static float _cost = 0;
 };
 
